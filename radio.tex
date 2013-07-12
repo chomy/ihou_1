@@ -64,6 +64,42 @@ $\lambda$を定数として、関数$f(t)=e^{\lambda t}$の時間微分は
 
 また、複素平面に書いた時、実部は位相に相当する。
 
-\section{Eularの公式の証明}
+\section{オイーラーの公式の証明}
+少し脱線して、オイーラーの公式(Eular's Formula)の証明をやってみよう。マクローリン展開を用いて証明するのが一般的なようだが、ここでは微分方程式を用いた方法でやってみよう。関数$f(x)$を
+\[
+f(x) = \cos x + j\sin x
+\]
+と定義する。この$f(x)$の$x$による微分を計算すると、
+\[
+f'(x) = \frac{df}{dx} = -\sin x + j\cos x
+\]
+となる。次に。$f'(x)$を$f(x)$で割ると
+\begin{eqnarray*}
+\frac{f'}{f} &=& \frac{-\sin x + j\cos x}{\cos x + j\sin x}\\
+&=&\frac{(-\sin x + j\cos x)(\cos x - j\sin x)}{(\cos x + j\sin x)(\cos x - j\sin x)}\\
+&=&\frac{-\sin x \cos x + j\sin^2 x + j\cos^2 x -j^2\sin x \cos x}{\cos^2 x + \sin^2 x}\\
+&=&j
+\end{eqnarray*}
+すなわち
+\[
+\frac{1}{f}\frac{df}{dx} = j
+\]
+という微分方程式になる。これを解くと
+\begin{eqnarray*}
+\frac{1}{f}\frac{df}{dx} &=& j\\
+\frac{1}{f}df &=& jdx\\
+\int \frac{1}{f} df &=& \int j dx\\
+\ln|f| &=& jx + C_1\\
+f &=& e^{jx+C_1}
+\end{eqnarray*}
+となる。ただし、$C_1$、$C_2$は積分定数。最初に、$f(x)=\cos x + j\sin x$としたので、
+\[
+\cos x + j\sin x = C e^{jx}
+\]
+である。$x=0$の時$f(0) = 1$で、$C e^{0} = C$なので、$C=1$。よって
+\[
+\cos x + j\sin x = e^{ix}
+\]
+が示された。
 
 \section{マクスウェル方程式から電磁波を導出}

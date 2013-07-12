@@ -6,9 +6,9 @@
 述べられていないことがある。まずはこれを導出してみよう。
 
 交流電圧が正弦波交流と仮定すると、電圧$V$は、振幅を$V_0$とすると以下のように書ける。
-\[
-V=V_0 \sin(\omega t)
-\]
+\begin{equation}
+V=V_0 \sin(\omega t) \label{eq:defv}
+\end{equation}
 ここで$\omega$とは角振動数で単位時間あたりの位相の変化率である。角振動数は、周波数を$f$とすると
 \[
 \omega = 2 \pi f
@@ -18,26 +18,52 @@ V=V_0 \sin(\omega t)
 T = \frac{1}{f} = \frac{2 \pi}{\omega}
 \]
 である。交流電圧の実効値$V_e$は、1周期あたりの平均の電圧である。$\sin$関数を1周期の間で積分すると$0$になってしまうため、$V$を二乗して積分し、その結果の平方根を実効値とする。すなわち
-\[
-V_e^2 =\frac{1}{T} \int_{0}^{T}V_0^2\sin^2(\omega t)dt
-\]
-$\sin$の二乗の積分はすぐにはできないので、倍角公式を使って$\cos 2\omega t$に変換する。
+\begin{equation}
+V_e^2 =\frac{1}{T} \int_{0}^{T}V_0^2\sin^2(\omega t)dt \label{eq:Veff_sq}
+\end{equation}
+$\sin$の二乗の積分はすぐにはできないので、倍角公式を使って$\cos 2\omega t$の積分に変換する。
+倍角公式は、
 \[
 \sin^2\theta = \frac{1-\cos 2\theta}{2}
 \]
-であるから、
-\[
-V_e^2 = \frac{V_0^2}{2T}\int_0^{T} 1 - \cos 2\omega t dt
-\]
-となり、積分を実行すると
-\[
-V_e^2 = \frac{V_0^2}{2T}[t + \frac{1}{2 \omega}\sin 2\omega t ]_0^{T} = \frac{V_0^2}{2}
-\]
+であるから、式(\ref{eq:Veff_sq})に上式を代入して積分を実行すると
+\begin{eqnarray*}
+V_e^2 &=& \frac{1}{T}\int_{0}^{T} V_0 \frac{1-\cos 2\omega t}{2} dt \\
+&=& \frac{V_0^2}{2T}\int_0^{T} 1 - \cos 2\omega t dt \\
+&=& \frac{V_0^2}{2T}[t + \frac{1}{2 \omega}\sin 2\omega t ]_0^{T} \\
+&=& \frac{V_0^2}{2}
+\end{eqnarray*}
 両辺の平方根をとり、符号が正のものを実効値とすると、
 \[
 V_e = \frac{V_0}{\sqrt{2}}
 \]
 となる。
 
+\section{正弦波交流の複素表示}
+式(\ref{eq:defv})で、時刻$t$における正弦波交流の電圧の瞬時値$V_0$を定義したが、
+Eularの公式
+\[
+e^{j\theta} = \cos\theta + j\sin\theta
+\]
+を用いて
+\begin{equation}
+V = V_e e^{j\omega t}
+\end{equation}
+と書く。ここで$j=\sqrt{-1}$である。電圧の計算値が必要な場合は、この虚部をとれば良い。
+このように書く理由は、正弦波が作る電場、磁場の時間微分の計算が以下のように容易になるためである。
+
+$\lambda$を定数として、関数$f(t)=e^{\lambda t}$の時間微分は
+\[
+\frac{df}{dt}=\lambda e^{\lambda t}
+\]
+であるから、たとえば正弦波交流が作る電場の大きさを$E=E_0e^{j\omega t}$とすると、この時間微分は
+\[
+\frac{dE}{dt} = E_0 j\omega e^{j \omega t} = j\omega E
+\]
+となり、微分を定数$j\omega$との積に変換することができる。
+
+また、複素平面に書いた時、実部は位相に相当する。
+
+\section{Eularの公式の証明}
 
 \section{マクスウェル方程式から電磁波を導出}

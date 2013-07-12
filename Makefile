@@ -19,6 +19,7 @@ ps: ${PS}
 
 ${DVI}: ${TEXFILES}
 	${TEX} ihou.tex
+	${TEX} ihou.tex
 
 ${PDF}: ${DVI} 
 	${DVIPDF} ${DVI}

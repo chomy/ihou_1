@@ -1,5 +1,5 @@
 \chapter{無線部報告}
-ここでは、無線関係、特に電磁波、交流理論の非常に基礎的な部分で私が学習していて気になった部分について述べる。教科書に載っている程度のレベルの話であり、読者がこの程度のことを理解しているのであれば、確実に退屈するであろう。また、冗長ではあるがなるべく計算の過程を省略せずに書く。これは私が後に振り返った時にどうしてそうなったかを思い出すためである。もしも読者が学習途上にあるなら、自分の手を動かして、私が辿った過程をなぞってみることをお勧めする。
+ここでは無線関係、特に電磁波、交流理論の非常に基礎的な部分で私が学習していて気になった部分について述べる。教科書に載っている程度のレベルの話であり、読者がこの程度のことを理解しているのであれば、確実に退屈するであろう。また、冗長ではあるがなるべく計算の過程を省略せずに書く。これは私が後に振り返った時にどうしてそうなったかを思い出すためである。もしも読者が学習途上にあるなら、自分の手を動かして、私が辿った過程をなぞってみることをお勧めする。
 
 \section{単相交流の実効値の導出}
 無線工学の教科書には、交流電圧の実効値は振幅の$\sqrt{2}$分の1であると書かれているが、導出まで
@@ -186,7 +186,20 @@ $\nabla$と$\nabla\times\bm{E}$の外積をとると、式(\ref{eq:mxwl-EH})よ�
 \bm{E} &=& \bm{E_0}e^{j\omega t}\\
 \bm{H} &=& \bm{H_0}e^{j\omega t}
 \end{eqnarray*}
-となるので、この時の波動方程式は、
+となるので、式(\ref{eq:mxwl-E})は、
+\begin{eqnarray}
+\nabla \times \bm{E} &=& -\mu \frac{\partial}{\partial t}\bm{H_0}e^{j\omega t} \nonumber\\
+&=& -j\omega\mu\bm{H_0}e^{j\omega t} \nonumber\\
+&=& -j\omega \mu \bm{H} \label{eq:mxwl_rotE}
+\end{eqnarray}
+となり、同様に式(\ref{eq:mxwl-H})は、
+\begin{eqnarray}
+\nabla \times \bm{H} &=& \sigma \bm{E} + \mu \frac{\partial}{\partial t}\bm{E_0}e^{j\omega t} \nonumber\\
+&=& \sigma\bm{E} + j\omega\mu\bm{E_0}e^{j\omega t} \nonumber\\
+&=& (\sigma + j\omega \mu) \bm{E} \label{eq:mxwl_rotH}
+\end{eqnarray}
+となる。
+またこの時の波動方程式は、
 \begin{eqnarray*}
 \nabla^2 \bm{E} &=& \mu \sigma\frac{\partial\bm{E_0}e^{j\omega t}}{\partial t} + \mu\epsilon\frac{\partial^2 \bm{E_0}e^{j\omega t}}{\partial t^2}\\
 &=& \mu \sigma j\omega \bm{E_0}e^{j \omega t} + \mu\epsilon j^2 \omega^2 \bm{E_0}e^{j \omega t} \\
@@ -199,5 +212,55 @@ $\nabla$と$\nabla\times\bm{E}$の外積をとると、式(\ref{eq:mxwl-EH})よ�
 \nabla^2\bm{E} + k^2\bm{E} = 0
 \end{equation}
 であり、ヘルムホルツ方程式と呼ばれる形である。
+
+磁場についても、$\nabla$と$\nabla\times\bm{E}$の外積をとり、式(\ref{eq:mxwl-HE})に式(\ref{eq:mxwl-HE})を代入し
+同様のことを行うと、磁場についてのヘルムホルツ方程式を得る。
+\begin{equation}
+\nabla^2\bm{H} + k^2\bm{H} = 0
+\end{equation}
+
+
+\subsection{平面波}
+導電率$\sigma=0$の空間において、すなわち、空気のように空間に満たされている物質の抵抗が十分大きい場合で、
+$\bm{E}$、$\bm{H}$が$z$のみの関数であるときを考える。式(ref{eq:mxwl-rotE})を
+$E$、$H$が正弦波と仮定して計算すると、
+\begin{eqnarray}
+(\frac{\partial E_y}{\partial z} - \frac{\partial E_z}{\partial y})\bm{i} +\
+(\frac{\partial E_z}{\partial x} - \frac{\partial E_x}{\partial z})\bm{j} +\
+(\frac{\partial E_x}{\partial y} - \frac{\partial E_y}{\partial x})\bm{k} =\
+-j\omega\mu(H_x\bm{i}+H_y\bm{j}+H_z\bm{k})
+\end{eqnarray}
+成分ごとに書くと、
+\begin{eqnarray}
+\frac{\partial E_y}{\partial z} - \frac{\partial E_z}{\partial y} =- j\omega\mu H_x  \\
+\frac{\partial E_z}{\partial x} - \frac{\partial E_x}{\partial z} =- j\omega\mu H_y  \\
+\frac{\partial E_x}{\partial y} - \frac{\partial E_y}{\partial x} = - j\omega\mu H_z  
+\end{eqnarray}
+となる。また、式(ref{eq:mxwl-rotH})も同様に、
+\begin{eqnarray}
+(\frac{\partial H_y}{\partial z} - \frac{\partial E_z}{\partial y})\bm{i} +\
+(\frac{\partial H_z}{\partial x} - \frac{\partial E_x}{\partial z})\bm{j} +\
+(\frac{\partial H_x}{\partial y} - \frac{\partial E_y}{\partial x})\bm{k} =\
+(\sigma + j\omega\epsilon)(H_x\bm{i}+H_y\bm{j}+H_z\bm{k})
+\end{eqnarray}
+\begin{eqnarray}
+(\frac{\partial H_y}{\partial z} - \frac{\partial H_z}{\partial y})\bm{i} = \sigma + j\omega\epsilon)H_x\\
+(\frac{\partial H_z}{\partial x} - \frac{\partial H_x}{\partial z})\bm{j} = \sigma + j\omega\epsilon)H_y\\
+(\frac{\partial H_x}{\partial y} - \frac{\partial H_y}{\partial x})\bm{k} = \sigma + j\omega\epsilon)H_z\\
+(\sigma + j\omega\epsilon)(H_x\bm{i}+H_y\bm{j}+H_z\bm{k})
+\end{eqnarray}
+である。$\bm{E}$が$z$のみに依存する関数であれば、$x$、$y$方向の微分は$0$であることに注意すると
+\begin{equation}
+H_z = E_z =0
+\end{equation}
+よって
+\begin{eqnarray}
+\frac{dE_x}{dz} &=& -j\omega\mu H_y \\
+\frac{dH_y}{dz} &=& -j\omega\epsilon E_x\\
+\frac{dE_y}{dz} &=& -j\omega\mu H_x \\
+\frac{dH_x}{dz} &=& -j\omega\epsilon E_y
+\end{eqnarray}
+
+
 
 

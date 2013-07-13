@@ -6,7 +6,7 @@ PREFIX=ihou
 DVI=${PREFIX}.dvi
 PDF=${PREFIX}.pdf
 PS=${PREFIX}.ps
-TEXFILES=ihou.tex radio.tex
+TEXFILES=ihou.tex radio.tex editor.tex
 
 .suffix: .tex .dvi
 

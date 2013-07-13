@@ -47,7 +47,7 @@ e^{j\theta} = \cos\theta + j\sin\theta
 \]
 を用いて
 \begin{equation}
-V = V_e e^{j\omega t}
+V = V_e e^{j\omega t} \label{eq:sinwave}
 \end{equation}
 と書く。ここで$j=\sqrt{-1}$である。電圧の計算値が必要な場合は、この虚部をとれば良い。
 このように書く理由は、正弦波が作る電場、磁場の時間微分の計算が以下のように容易になるためである。
@@ -90,16 +90,114 @@ f'(x) = \frac{df}{dx} = -\sin x + j\cos x
 \frac{1}{f}df &=& jdx\\
 \int \frac{1}{f} df &=& \int j dx\\
 \ln|f| &=& jx + C_1\\
-f &=& e^{jx+C_1}
+f &=& e^{jx+C_1}\\
+  &=& e^C_1e^{jx}\\
+ &=& C e^{jx}
 \end{eqnarray*}
-となる。ただし、$C_1$、$C_2$は積分定数。最初に、$f(x)=\cos x + j\sin x$としたので、
+となる。ただし、$C_1$、$C$は積分定数。$e^{C_1}$は定数なので、$e^{C_1}=C$とした。
+そういえば最初に、$f(x)=\cos x + j\sin x$としたので、
 \[
 \cos x + j\sin x = C e^{jx}
 \]
-である。$x=0$の時$f(0) = 1$で、$C e^{0} = C$なので、$C=1$。よって
+である。$x=0$の時$f(0) = 1$で、$C e^{0} = C$なので、$C=1$よって
 \[
 \cos x + j\sin x = e^{ix}
 \]
 が示された。
 
 \section{マクスウェル方程式から電磁波を導出}
+電磁波は、マクスウェル方程式から波動方程式が導出できることからその存在が予言され、ヘルツによって
+電磁波の存在が実験的に確かめられた。この節では、その過程をたどってみよう。
+\subsection{マクスウェル方程式}
+マクスウェル方程式は、マクスウェルが既に知られていたファラデーの電磁誘導の法則、アンペールの回路法則、ガウスの定理を
+まとめたもので、以下の簡潔な方程式で表現されている。
+\begin{eqnarray}
+\nabla \times \bm{E} &=& -\frac{\partial \bm{B}}{\partial t} \label{eq:mxwl-E}\\
+\nabla \times \bm{H} &=& \bm{J} + \frac{\partial \bm{D}}{\partial t} \label{eq:mxwl-H}\\
+\nabla \cdot \bm{D}  &=& \rho \label{eq:mxwl-D}\\
+\nabla \cdot \bm{B}  &=& 0 \label{eq:mxwl-B}
+\end{eqnarray}
+また、
+\begin{eqnarray}
+\bm{D} &=& \epsilon \bm{E} \label{eq:mxwl-D2}\\
+\bm{B} &=& \mu \bm{H} \label{eq:mxwl-B2}\\
+\bm{J} &=& \sigma \bm{E} \label{eq:mxwl-J}
+\end{eqnarray}
+である。ここで、$\bm{E}$は電場、$\bm{H}$は磁場、$\bm{D}$は電束密度、$\bm{B}$磁束密度で、$\nabla$は
+$\bm{i}$、$\bm{j}$、$\bm{k}$を$x$、$y$、$z$方向の単位ベクトルとすると
+\[
+\nabla = \frac{\partial}{\partial x} \bm{i} + \frac{\partial}{\partial y} \bm{j} + \frac{\partial}{\partial z} \bm{k}
+\]
+という演算子のベクトルである。$\nabla$を任意のベクトル$\bm{A}=A_x\bm{i} + A_y\bm{j} + A_z\bm{k}$に作用させると
+\[
+\nabla\bm{A} = \frac{\partial A_x}{\partial x} \bm{i} + \frac{\partial A_y}{\partial y} \bm{j} + \frac{\partial A_z}{\partial z} \bm{k}
+\]
+これは、「ベクトル$\bm{A}$の$x$、$y$、$z$方向のそれぞれの変化率をベクトルにしたもの」である。ベクトルのスカラー積、ベクトル積も確認しておこう。
+ベクトル$\bm{A}$の他に、もう一つ任意のベクトル$\bm{B}=B_x\bm{i} + B_y\bm{j} + B_z\bm{k}$を使うことにすると、$\bm{A}$と$\bm{B}$の
+内積（スカラー積）および外積（ベクトル積）は
+\begin{eqnarray*}
+\bm{A} \cdot \bm{B} &=& A_xB_x + A_yB_y + A_zB_z \\
+\bm{A}\times\bm{B} &=& (A_yB_z - A_zB_y)\bm{i} + (A_zB_x - A_xB_z)\bm{j} + (A_xB_y - A_yB_z)\bm{k}
+\end{eqnarray*}
+である。また、$\bm{A}\bot(\bm{A}\times\bm{B}$)、$\bm{B}\bot(\bm{A}\times\bm{B})$である。そして$\nabla$と$\bm{A}$との内積、外積は、
+\begin{eqnarray*}
+\nabla \cdot \bm{A} &=& \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z} \\
+\nabla \times\bm{A} &=& (\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z})\bm{i} + (\frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x})\bm{j} + (\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y})\bm{k}
+\end{eqnarray*}
+である。
+
+式(\ref{eq:mxwl-B2})を式(\ref{eq:mxwl-E})に、また式(\ref{eq:mxwl-D2})、式(\ref{eq:mxwl-D2})を式(\ref{eq:mxwl-H})に代入すると、
+\begin{eqnarray}
+\nabla \times \bm{E} &=& -\mu\frac{\partial \bm{H}}{\partial t} \label{eq:mxwl-EH}\\
+\nabla \times \bm{H} &=& \sigma\bm{E} + \epsilon\frac{\partial \bm{E}}{\partial t} \label{eq:mxwl-HE}
+\end{eqnarray}
+となる。式(\ref{eq:mxwl-EH})を見ると、左辺が $0$ でないとき($\nabla\times\bm{E}\neq 0$)、右辺と左辺の間のイコール($=$)を成立させるためには、
+$\mu$が定数なので、磁場の時間変化$\frac{\partial \bm{H}}{\partial t}$は$0$になれない。
+すなわち空間の電場が変化すると、磁場の時間的に変化することを意味する。
+同様に、式(\ref{eq:mxwl-HE})を見ると、空間の磁場が変化する($\nabla\times\bm{H}\neq 0$)と、電場の時間変化を引き起こすことがわかる。
+よって、なんらかの原因で空間の電場が変化すると、磁場が変化し、その磁場の変化が電場を変化させ、その電場の変化が....と電場と磁場の変化の連鎖が
+継続することがわかる。はじめに磁場が変化した場合も同様である。
+
+\subsection{波動方程式}
+$\nabla$と$\nabla\times\bm{E}$の外積をとると、式(\ref{eq:mxwl-EH})より
+\[
+\nabla\times(\nabla\times\bm{E}) = -\mu \frac{\partial}{\partial t}(\nabla\times\bm{H})
+\]
+式(\ref{eq:mxwl-HE})を代入すると
+\begin{equation}
+\nabla\times(\nabla\times\bm{E}) = -\mu \sigma\frac{\partial\bm{E}}{\partial t} - \mu\epsilon\frac{\partial^2 \bm{E}}{\partial t^2} \label{eq:mxwl-DDE}
+\end{equation}
+となる。空間に電荷がない場合を考えると、$\nabla\bm{D}=\epsilon\nabla\bm{E} = 0$であるから、ベクトル公式
+\[\nabla\times(\nabla\times\bm{E}) = \nabla(\nabla\cdot\bm{E})-\nabla^2\bm{E}
+\]
+は、
+\[
+\nabla\times(\nabla\times\bm{E}) = -\nabla^2 E
+\]
+となる。これを式(\ref{eq:mxwl-DDE})に代入すると、
+\begin{equation}
+\nabla^2 E = \mu \sigma\frac{\partial\bm{E}}{\partial t} + \mu\epsilon\frac{\partial^2 \bm{E}}{\partial t^2} \label{eq:mxwl-wveq}
+\end{equation}
+と書ける。これを電磁波の波動方程式といい、マイクロ波の問題はこの波動方程式に境界条件を適用することで解くことができる。
+
+
+特に電場、磁場が正弦波交流により生じた場合、式(\ref{eq:sinwave})と同様に
+\begin{eqnarray*}
+\bm{E} &=& \bm{E_0}e^{j\omega t}\\
+\bm{H} &=& \bm{H_0}e^{j\omega t}
+\end{eqnarray*}
+となるので、この時の波動方程式は、
+\begin{eqnarray*}
+\nabla^2 \bm{E} &=& \mu \sigma\frac{\partial\bm{E_0}e^{j\omega t}}{\partial t} + \mu\epsilon\frac{\partial^2 \bm{E_0}e^{j\omega t}}{\partial t^2}\\
+&=& \mu \sigma j\omega \bm{E_0}e^{j \omega t} + \mu\epsilon j^2 \omega^2 \bm{E_0}e^{j \omega t} \\
+&=&\mu \sigma j\omega \bm{E} - \mu\epsilon \omega^2 \bm{E}\\
+&=& (j\mu\sigma\omega - \omega^2\mu\epsilon)\bm{E}\\
+&=& -k^2\bm{E}
+\end{eqnarray*}
+となる。ここで$k^2= \mu\epsilon \omega^2 -j\omega\mu\sigma$とした。これは
+\begin{equation}
+\nabla^2\bm{E} + k^2\bm{E} = 0
+\end{equation}
+であり、ヘルムホルツ方程式と呼ばれる形である。
+
+

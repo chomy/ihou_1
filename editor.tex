@@ -1,7 +1,12 @@
 \chapter{出版部報告}
 
-% A4で出力するとき
-psbook ihou.ps |psnup -2 >out.ps
 
+
+% A4で出力するとき
+\begin{listing}
+psbook ihou.ps |psnup -2 >out.ps
+\end{listing}
 % A3で出力する時
+\begin{listing}
 psbook ihou.ps |psnup -2|psresize -pa3 |ps2ps -sPAPERSIZE=a3 - - >out.ps
+\end{listing}

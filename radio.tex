@@ -52,7 +52,8 @@ V = V_e e^{j\omega t} \label{eq:sinwave}
 と書く。ここで$j=\sqrt{-1}$である。電圧の計算値が必要な場合は、この虚部をとれば良い。
 このように書く理由は、正弦波が作る電場、磁場の時間微分の計算が以下のように容易になるためである。
 
-$\lambda$を定数として、関数$f(t)=e^{\lambda t}$の時間微分は
+$\lambda$を定数として、関数$f(t)=e^{\lambda t}$
+の時間微分は
 \[
 \frac{df}{dt}=\lambda e^{\lambda t}
 \]
@@ -153,9 +154,9 @@ $\bm{i}$、$\bm{j}$、$\bm{k}$を$x$、$y$、$z$方向の単位ベクトルと�
 \end{eqnarray}
 となる。式(\ref{eq:mxwl-EH})を見ると、左辺が $0$ でないとき($\nabla\times\bm{E}\neq 0$)、右辺と左辺の間のイコール($=$)を成立させるためには、
 $\mu$が定数なので、磁場の時間変化$\frac{\partial \bm{H}}{\partial t}$は$0$になれない。
-すなわち空間の電場が変化すると、磁場の時間的に変化することを意味する。
+すなわち空間の電場が変化すると、磁場が時間的に変化することを意味する。
 同様に、式(\ref{eq:mxwl-HE})を見ると、空間の磁場が変化する($\nabla\times\bm{H}\neq 0$)と、電場の時間変化を引き起こすことがわかる。
-よって、なんらかの原因で空間の電場が変化すると、磁場が変化し、その磁場の変化が電場を変化させ、その電場の変化が....と電場と磁場の変化の連鎖が
+よってなんらかの原因で空間の電場が変化すると、磁場が変化し、その磁場の変化が電場を変化させ、その電場の変化が....と電場と磁場の変化の連鎖が
 継続することがわかる。はじめに磁場が変化した場合も同様である。
 
 \subsection{波動方程式}
@@ -230,7 +231,7 @@ $E$、$H$が正弦波と仮定して計算すると、
 (\frac{\partial E_x}{\partial y} - \frac{\partial E_y}{\partial x})\bm{k} =\
 -j\omega\mu(H_x\bm{i}+H_y\bm{j}+H_z\bm{k})
 \end{eqnarray}
-成分ごとに書くと、
+ で、成分ごとに書くと、
 \begin{eqnarray}
 \frac{\partial E_y}{\partial z} - \frac{\partial E_z}{\partial y} =- j\omega\mu H_x  \\
 \frac{\partial E_z}{\partial x} - \frac{\partial E_x}{\partial z} =- j\omega\mu H_y  \\
@@ -238,18 +239,18 @@ $E$、$H$が正弦波と仮定して計算すると、
 \end{eqnarray}
 となる。また、式(\ref{eq:mxwl_rotH})も同様に、
 \begin{eqnarray}
-(\frac{\partial H_y}{\partial z} - \frac{\partial E_z}{\partial y})\bm{i} +\
-(\frac{\partial H_z}{\partial x} - \frac{\partial E_x}{\partial z})\bm{j} +\
-(\frac{\partial H_x}{\partial y} - \frac{\partial E_y}{\partial x})\bm{k} =\
+(\frac{\partial H_y}{\partial z} - \frac{\partial H_z}{\partial y})\bm{i} +\
+(\frac{\partial H_z}{\partial x} - \frac{\partial H_x}{\partial z})\bm{j} +\
+(\frac{\partial H_x}{\partial y} - \frac{\partial H_y}{\partial x})\bm{k} =\
 (\sigma + j\omega\epsilon)(H_x\bm{i}+H_y\bm{j}+H_z\bm{k})
 \end{eqnarray}
+で、成分ごとに書くと、
 \begin{eqnarray}
-(\frac{\partial H_y}{\partial z} - \frac{\partial H_z}{\partial y})\bm{i} = \sigma + j\omega\epsilon)H_x\\
-(\frac{\partial H_z}{\partial x} - \frac{\partial H_x}{\partial z})\bm{j} = \sigma + j\omega\epsilon)H_y\\
-(\frac{\partial H_x}{\partial y} - \frac{\partial H_y}{\partial x})\bm{k} = \sigma + j\omega\epsilon)H_z\\
-(\sigma + j\omega\epsilon)(H_x\bm{i}+H_y\bm{j}+H_z\bm{k})
+(\frac{\partial H_y}{\partial z} - \frac{\partial H_z}{\partial y})\bm{i} = \sigma + (j\omega\epsilon)H_x\\
+(\frac{\partial H_z}{\partial x} - \frac{\partial H_x}{\partial z})\bm{j} = \sigma + (j\omega\epsilon)H_y\\
+(\frac{\partial H_x}{\partial y} - \frac{\partial H_y}{\partial x})\bm{k} = \sigma + (j\omega\epsilon)H_z
 \end{eqnarray}
-である。$\bm{E}$が$z$のみに依存する関数であれば、$x$、$y$方向の微分は$0$であることに注意すると
+となる。$\bm{E}$が$z$のみに依存する関数であれば、$x$、$y$方向の微分は$0$であることに注意すると
 \begin{equation}
 H_z = E_z =0
 \end{equation}
@@ -286,18 +287,5 @@ H_z = E_z =0
 \frac{d^2H_x}{dz^2} + \omega^2\mu\epsilon H_x &=& 0\label{eq:plane_waveHx}
 \end{eqnarray}
 となる。これらの、式(\ref{eq:plane_waveEx})から式(\ref{eq:plane_waveHx})の4つの式は、
-振動を表す微分方程式である。$\kappa$を定数とすると、
-\begin{equation}
-\frac{d^2X}{dZ} + \kappa X = 0 \label{eq:wave_eq}
-\end{equation}
-の解は、
-\begin{equation}
-X=exp(\lambda Z) \label{eq:wave_eqX}
-\end{equation}
-と仮定すると、
-\begin{eqnarray}
-\frac{dX}{dZ} &=& \lambda e^{\lambda Z} \nonumber\\
-\frac{d^2X}{dZ^2} = &=& \lambda^2 e^{\lambda Z}
-\end{eqnarray}
-これらを、微分方程式
+振動を表す微分方程式である。
 

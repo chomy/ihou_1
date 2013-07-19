@@ -234,7 +234,7 @@ $E$、$H$が正弦波と仮定して計算すると、
  で、成分ごとに書くと、
 \begin{eqnarray}
 \frac{\partial E_y}{\partial z} - \frac{\partial E_z}{\partial y} =- j\omega\mu H_x  \\
-\frac{\partial E_z}{\partial x} - \frac{\partial E_x}{\partial z} =- j\omega\mu H_y  \\
+\frac{\partial E_z}{\partial x} - \frac{\partial E_x}{\partial z} =- j\omega\mu H_y  \label{eq:plane_waveEzExHy}\\
 \frac{\partial E_x}{\partial y} - \frac{\partial E_y}{\partial x} = - j\omega\mu H_z  
 \end{eqnarray}
 となる。また、式(\ref{eq:mxwl_rotH})も同様に、
@@ -289,3 +289,63 @@ H_z = E_z =0
 となる。これらの、式(\ref{eq:plane_waveEx})から式(\ref{eq:plane_waveHx})の4つの式は、
 振動を表す微分方程式である。
 
+$\kappa^2=\omega^2\mu\epsilon$とおくと、式(\ref{eq:plane_waveEx})は、
+\[
+\frac{d^2E_x}{dz^2} + \kappa^2 E_x = 0
+\]
+である。$E_x=e^{\lambda z}$と仮定して、$z$の一階微分、二階微分を計算すると
+\begin{eqnarray*}
+\frac{dE_x}{dz} &=& \lambda e^{\lambda z}\\
+\frac{d^2E_x}{dz^2} &=& \lambda^2 e^{\lambda z}
+\end{eqnarray*}
+なので、元の微分方程式に代入すると
+\[
+(\lambda^2 + \kappa^2)e^{\lambda z} = 0
+\]
+となる。$e^{\lambda z} \neq 0$なので、$\lambda^2 + \kappa^2 = 0$。よって$\lambda=\pm j\kappa$。ゆえに一般解は
+$C_1$、$C_2$を定数として
+\[
+E_x = C_1 e^{j\kappa z} + C_2 e^{-j\kappa z}
+\]
+である。前述のオイーラーの公式を用いて、$C_1$、$C_2$を適当に選ぶと、
+\begin{equation}
+E_x = A_1\cos\kappa z + jB_1\sin\kappa z
+\end{equation}
+である。残りの式も同様に、
+\begin{eqnarray}
+H_y &=& A_2\cos\kappa z + jB_2\sin\kappa z \\
+E_y &=& A_3\cos\kappa z + jB_3\sin\kappa z \\
+H_x &=& A_4\cos\kappa z + jB_4\sin\kappa z
+\end{eqnarray}
+となる。$\bm{E}$および$\bm{H}$は、角速度$\omega = 2\pi f$の正弦波であると仮定していたことを思い出すと、
+$E_x = A_1'\sin \omega t + B_1' \cos \omega t$と書けるはずである。電磁波の伝搬速度を$v$とすると、$z=vt$であるから
+\begin{eqnarray*}
+E_x &=& A_1\cos \kappa vt + jB_1 \sin \kappa vt \\
+&=& A_1\cos \omega \sqrt{\mu \epsilon}vt + jB_1\sin \omega \sqrt{\mu \epsilon}vt\\
+&=&  A_1\cos \omega t + jB_1 \sin \omega t
+\end{eqnarray*}
+$\sin$または$\cos$の引数を比較すると、$\omega v\sqrt{\mu \epsilon} t= \omega t$であるから、
+\begin{equation}
+v = \frac{1}{\sqrt{\mu \epsilon}}
+\end{equation}
+である。真空中の場合、$\mu = 4\pi \times 10^{-7}\mathrm{[H/m]}$、$\epsilon =8.854187817620 \times 10^{-12} \mathrm{[s^4A^2/kg\cdot m^3]}$であるから、
+$v=2.9979\times 10^8 \mathrm{[m/s]}$となり光速度$c$に一致する。
+
+もしも、ダイポールアンテナが水平に張られており、それに周波数$f$の高周波電圧が印可されていたとすると、水平方向に電場の変化が生じる。すなわち
+\[
+E_x = E\cos\omega t + jE\sin\omega t, \quad E_y=Ez=0
+\]
+の電場が生じる。式(\ref{eq:plane_waveEzExHy})に代入して
+\begin{eqnarray}
+0 - \frac{d}{dz}(E\cos\kappa z + jE\sin\kappa z) &=& -(-E\kappa\sin\kappa z + jE\kappa\cos\kappa z) \nonumber\\
+&=&-(-E\omega\sqrt{\mu\epsilon}\sin\kappa z + jE\omega\sqrt{\mu\epsilon}\cos\kappa z) \nonumber\\
+&=&-j\omega\mu H_y \nonumber\\
+H_y&=&jE\sqrt{\frac{\epsilon}{\mu}}\sin\kappa z + E\sqrt{\frac{\epsilon}{\mu}}\cos\kappa z \nonumber\\
+\frac{E_x}{H_y} &=& \sqrt{\frac{\mu}{\epsilon}} = \zeta
+\end{eqnarray}
+となる。アンテナに印可された高周波電圧により、空間を伝播するに電場と磁場の波が生じる。これが電磁波である。
+ループアンテナ等により、空間に磁場の変化が生じた場合も同様である。
+また、$\zeta$は、インピーダンスの次元を持ち、真空中ではおよそ377$\Omega$である。
+
+以上のように、マクスウェル方程式から波動関数を導き、電場または磁場が正弦波であることを仮定すると
+空間を伝播する電場と磁場の波、すなわち電磁波の存在を導くことができた。

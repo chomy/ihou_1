@@ -222,7 +222,7 @@ $\nabla$と$\nabla\times\bm{E}$の外積をとると、式(\ref{eq:mxwl-EH})よ�
 
 \subsection{平面波}
 導電率$\sigma=0$の空間において、すなわち、空気のように空間に満たされている物質の抵抗が十分大きい場合で、
-$\bm{E}$、$\bm{H}$が$z$のみの関数であるときを考える。式(ref{eq:mxwl-rotE})を
+$\bm{E}$、$\bm{H}$が$z$のみの関数であるときを考える。式(\ref{eq:mxwl_rotE})を
 $E$、$H$が正弦波と仮定して計算すると、
 \begin{eqnarray}
 (\frac{\partial E_y}{\partial z} - \frac{\partial E_z}{\partial y})\bm{i} +\
@@ -236,7 +236,7 @@ $E$、$H$が正弦波と仮定して計算すると、
 \frac{\partial E_z}{\partial x} - \frac{\partial E_x}{\partial z} =- j\omega\mu H_y  \\
 \frac{\partial E_x}{\partial y} - \frac{\partial E_y}{\partial x} = - j\omega\mu H_z  
 \end{eqnarray}
-となる。また、式(ref{eq:mxwl-rotH})も同様に、
+となる。また、式(\ref{eq:mxwl_rotH})も同様に、
 \begin{eqnarray}
 (\frac{\partial H_y}{\partial z} - \frac{\partial E_z}{\partial y})\bm{i} +\
 (\frac{\partial H_z}{\partial x} - \frac{\partial E_x}{\partial z})\bm{j} +\
@@ -255,12 +255,49 @@ H_z = E_z =0
 \end{equation}
 よって
 \begin{eqnarray}
-\frac{dE_x}{dz} &=& -j\omega\mu H_y \\
-\frac{dH_y}{dz} &=& -j\omega\epsilon E_x\\
-\frac{dE_y}{dz} &=& -j\omega\mu H_x \\
-\frac{dH_x}{dz} &=& -j\omega\epsilon E_y
+\frac{dE_x}{dz} &=& -j\omega\mu H_y \label{eq:plane_ExHy}\\
+\frac{dH_y}{dz} &=& -j\omega\epsilon E_x \label{eq:plane_HyEx}\\
+\frac{dE_y}{dz} &=& -j\omega\mu H_x \label{eq:plane_EyHx}\\
+\frac{dH_x}{dz} &=& -j\omega\epsilon E_y \label{eq:plane_HxEy}
 \end{eqnarray}
-
-
-
+となる。式(\ref{eq:plane_ExHy})の両辺を$z$で微分し、式(\ref{eq:plane_HyEx})を代入すると
+\begin{eqnarray*}
+\frac{d^2E_x}{dz^2} &=& -j\omega\mu \frac{dH_y}{dz} \nonumber\\
+&=& -j\omega\mu (-j\omega\epsilon E_x) \nonumber\\
+&=& -\omega^2\mu\epsilon E_x \nonumber
+\end{eqnarray*}
+ゆえに
+\begin{equation}
+\frac{d^2E_x}{dz^2} + \omega^2\mu\epsilon E_x = 0\label{eq:plane_waveEx}
+\end{equation}
+である。式(\ref{eq:plane_HyEx})は、両辺を$z$で微分した後、式(\ref{eq:plane_ExHy})を代入する。
+\begin{eqnarray*}
+\frac{d^2H_y}{dz^2} &=& -j\omega\epsilon\frac{dE_x}{dz} \nonumber \\
+&=&-j\omega\epsilon(-j\omega\mu H_y) \nonumber\\
+&=&-\omega^2\mu\epsilon H_y
+\end{eqnarray*}
+ゆえに
+\begin{equation}
+\frac{d^2H_y}{dz^2} + \omega^2\mu\epsilon H_y = 0\label{eq:plane_waveHy}
+\end{equation}
+である。同様に$E_y$と$H_x$も、
+\begin{eqnarray}
+\frac{d^2E_y}{dz^2} + \omega^2\mu\epsilon E_y &=& 0 \label{eq:plane_waveEy}\\
+\frac{d^2H_x}{dz^2} + \omega^2\mu\epsilon H_x &=& 0\label{eq:plane_waveHx}
+\end{eqnarray}
+となる。これらの、式(\ref{eq:plane_waveEx})から式(\ref{eq:plane_waveHx})の4つの式は、
+振動を表す微分方程式である。$\kappa$を定数とすると、
+\begin{equation}
+\frac{d^2X}{dZ} + \kappa X = 0 \label{eq:wave_eq}
+\end{equation}
+の解は、
+\begin{equation}
+X=exp(\lambda Z) \label{eq:wave_eqX}
+\end{equation}
+と仮定すると、
+\begin{eqnarray}
+\frac{dX}{dZ} &=& \lambda e^{\lambda Z} \nonumber\\
+\frac{d^2X}{dZ^2} = &=& \lambda^2 e^{\lambda Z}
+\end{eqnarray}
+これらを、微分方程式
 

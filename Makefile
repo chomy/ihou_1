@@ -7,7 +7,7 @@ DVI=${PREFIX}.dvi
 PDF=${PREFIX}.pdf
 PS=${PREFIX}.ps
 BOOK=${PREFIX}-print.pdf
-TEXFILES=ihou.tex radio.tex editor.tex colophon.tex
+TEXFILES=ihou.tex radio.tex editor.tex colophon.tex cover.tex
 
 .suffix: .tex .dvi
 
